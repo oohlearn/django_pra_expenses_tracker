@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "myapp",
     "django.contrib.humanize",
     # 上面可以將數字加逗號
+    "users"
 ]
 
 MIDDLEWARE = [
@@ -127,3 +128,6 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, "myapp/image")
 MEDIA_URL = "myapp/image/"
+
+LOGIN_URL = "users/login"
+LOGOUT_URL = "users/logout"

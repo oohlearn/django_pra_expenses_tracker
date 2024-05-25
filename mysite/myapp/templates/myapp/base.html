@@ -10,11 +10,30 @@
   </head>
   <body>
     <nav class="shadow-lg p-10">
-      <div class="container flex flex-wrap justify-between items-center mx-auto">
-        <a href="#" class="flex">
-          <img src="{% static 'myapp/image/wallet.png' %}" class="h-10 mr-3" />
-          <span class="self-center text-xl font-semebold">Expense Tracker</span>
-        </a>
+      <div class="px-4 mx-auto">
+        <div class="flex justify-between">
+          <div class="container flex flex-wrap justify-between items-center mx-auto">
+            <a href="#" class="flex">
+              <img src="{% static 'myapp/image/wallet.png' %}" class="h-10 mr-3" />
+              <span class="self-center text-xl font-semebold">Expense Tracker</span>
+            </a>
+          </div>
+          <div class="space-x-1">
+            <a href="" class="py-4 px-2 text-green-500 font-semebold">Home</a>
+          </div>
+          {% if request.user.is_authenticated %}
+          <div class="space-x-1">
+            <a href="{% url 'logout' %}" class="py-4 px-2 text-green-500 font-semebold">Logout</a>
+          </div>
+          {%else%}
+          <div class="space-x-1">
+            <a href="{% url 'login' %}" class="py-4 px-2 text-green-500 font-semebold">Login</a>
+          </div>
+          <div class="space-x-1">
+            <a href="" class="py-4 px-2 text-green-500 font-semebold">Register</a>
+          </div>
+          {% endif %}
+        </div>
       </div>
     </nav>
     {% block body %} {% endblock %}

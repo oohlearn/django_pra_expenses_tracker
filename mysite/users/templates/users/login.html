@@ -1,0 +1,12 @@
+{% extends "myapp/base.html" %} {% block body %}
+<div class="container">
+  <h1 class="m-10">Login</h1>
+  <div class="form-container shadow-lg m-10 rounded-lg">
+    <form method="post">
+      {% csrf_token %} {{ form.as_p }}
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

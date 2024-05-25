@@ -3,10 +3,11 @@ from .models import Expense
 from .forms import ExpenseForm
 from django.db.models import Sum
 import datetime
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-
+# @login_required
 def list_view(request):
     expenses = Expense.objects.all()
     form = ExpenseForm()
@@ -46,7 +47,7 @@ def list_view(request):
                    "daily_sums": daily_sums,
                    "category_sums": category_sums})
 
-
+@login_required
 def edit(request, id=id):
     expense = Expense.objects.get(id=id)
     form = ExpenseForm(instance=expense)
@@ -57,7 +58,7 @@ def edit(request, id=id):
             return redirect("/")
     return render(request, 'myapp/edit.html', {'form': form})
 
-
+@login_required
 def delete(request, id=id):
     if request.method == "POST" and "delete" in request.POST:
         expense = Expense.objects.get(id=id)
