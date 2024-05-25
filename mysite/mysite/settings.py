@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "myapp"
+    "myapp",
+    "django.contrib.humanize",
+    # 上面可以將數字加逗號
 ]
 
 MIDDLEWARE = [
