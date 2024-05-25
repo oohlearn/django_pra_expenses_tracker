@@ -1,5 +1,57 @@
-{% extends "myapp/base.html" %} {% block title %}List {% endblock %} {% block body %}
+{% extends "myapp/base.html" %} 
+{% load static %}
+{% block title %}List {% endblock %} {% block body %}
 <h1>Expenses Tracker</h1>
-{% for item in expenses %}
-<div class="">{{item.name}} : {{item.cost}}</div>
-{% endfor %} {% endblock %}
+<div>
+  <form method="post" class="form-container shadow-lg m-10 rounded-lg">
+    {% csrf_token %}
+    <div class="form-container px-10 py-10 flex">
+      <div class="mx-10">
+        <label for="" class="mb-5">Expense Name</label>
+        <div class="border">{{form.name}}</div>
+      </div>
+      <div class="mx-10">
+        <label for="" class="mb-5">Cost</label>
+        <div class="border">{{form.cost}}</div>
+      </div>
+      <div class="mx-10">
+        <label for="" class="mb-5">Category</label>
+        <div class="border">{{form.category}}</div>
+      </div>
+      <input type="submit" value="Add" class="bg-green-500 px-5 py-2 rounded-lg text-white font-bold" />
+    </div>
+  </form>
+</div>
+<div class="shadow-lg m-10 rounded-lg">
+  <div class="expense-header flex flex-wrap space-x-40">
+    <span> Name </span>
+    <span> Cost </span>
+    <span> Category </span>
+    <span> Date </span>
+    <span> Edit</span>
+    <span> Delete </span>
+  </div>
+  <hr class="m-10" />
+  {% for item in expenses %}
+  <div class="expense-row flex flex-wrap px-20 py-5">
+    <span class="font-bold">{{item.name}} </span>
+    <span class="font-bold">{{item.cost}} </span>
+    <span class="font-bold">{{item.category}} </span>
+    <span class="font-bold">{{item.date}} </span>
+    <span class="font-bold"><a href="{% url 'edit' item.id  %}" method="POST" ><img src="{% static 'myapp/image/edit.png' %} " class="h-5"></a></span>
+    <!-- 
+    這個刪除直接在同個頁面刪除，所以直接弄個form
+    因為這個頁面還有其他的post request，為了區分，將這個button加個name，
+    然後在views那邊，加上delete in request，兩個post request就不會衝突
+     -->
+    <span class="font-bold">
+        <form action="{% url 'delete' item.id %}" method="post" >
+            {% csrf_token %}
+            <button type="submit" name="delete"><img src="{% static 'myapp/image/delete.png' %}"  class="h-5">
+            </button>
+        </form>
+  </div>
+  
+  {% endfor %}
+</div>
+{% endblock %}

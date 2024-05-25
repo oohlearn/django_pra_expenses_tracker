@@ -1,0 +1,23 @@
+{% extends "myapp/base.html" %} {% block title %}Edit {% endblock %} {% block body %}
+<h1>Edit</h1>
+<div>
+  <form method="post" class="form-container shadow-lg m-10 rounded-lg">
+    {% csrf_token %}
+    <div class="form-container px-10 py-10 flex">
+      <div class="mx-10">
+        <label for="" class="mb-5">Expense Name</label>
+        <div class="border">{{form.name}}</div>
+      </div>
+      <div class="mx-10">
+        <label for="" class="mb-5">Cost</label>
+        <div class="border">{{form.cost}}</div>
+      </div>
+      <div class="mx-10">
+        <label for="" class="mb-5">Category</label>
+        <div class="border">{{form.category}}</div>
+      </div>
+      <input type="submit" value="Save" class="bg-green-500 px-5 py-2 rounded-lg text-white font-bold" />
+    </div>
+  </form>
+</div>
+{% endblock %}
