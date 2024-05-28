@@ -7,7 +7,6 @@ from django.contrib.auth import authenticate, login, logout
 
 # Create your views here.
 def user_login(request):
-
     if request.method == "POST":
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -24,9 +23,13 @@ def user_login(request):
     return render(request, "users/login.html", {"form": form})
 
 
-class UserLogoutView(LogoutView):
-    template_name = "users/logout.html"
+def logout_view(request):
+    logout(request)
+    return redirect('/users/login')
+    
+# class UserLogoutView(LogoutView):
 
-    def get(self, request):
-        logout(request)
-        return render(request, "users/logout.html")
+#     def get(self, request):
+#         logout(request)
+#         # return render(request, "registration/logout.html")
+#         return redirect('login')

@@ -23,11 +23,11 @@
           </div>
           {% if request.user.is_authenticated %}
           <div class="space-x-1">
-            <a href="{% url 'logout' %}" class="py-4 px-2 text-green-500 font-semebold">Logout</a>
+            <a href="{% url 'users:logout' %}" class="py-4 px-2 text-green-500 font-semebold">Logout</a>
           </div>
           {%else%}
           <div class="space-x-1">
-            <a href="{% url 'login' %}" class="py-4 px-2 text-green-500 font-semebold">Login</a>
+            <a href="{% url 'users:login' %}" class="py-4 px-2 text-green-500 font-semebold">Login</a>
           </div>
           <div class="space-x-1">
             <a href="" class="py-4 px-2 text-green-500 font-semebold">Register</a>
